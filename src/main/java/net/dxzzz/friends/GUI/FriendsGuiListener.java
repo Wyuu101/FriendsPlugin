@@ -1,5 +1,6 @@
 package net.dxzzz.friends.GUI;
 import de.rapha149.signgui.SignGUI;
+import net.dxzzz.friends.Friends;
 import net.dxzzz.friends.PlayerData;
 import net.md_5.bungee.api.chat.*;
 import org.bukkit.Bukkit;
@@ -86,7 +87,7 @@ public class FriendsGuiListener implements Listener {
                         SignGUI gui = SignGUI.builder()
                                 .setLines(null, "请在第一行输入", "要添加的玩家名")
                                 .setHandler((p, result) -> {
-                                    String name = result.getLine(0);
+                                    String name = Friends.getDatabaseManager().getUserRealName(result.getLine(0));
                                     Bukkit.getScheduler().runTask(plugin, () -> {
                                         player.performCommand("hy tj " + name);
                                         player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 1);

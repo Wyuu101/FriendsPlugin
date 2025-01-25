@@ -1,5 +1,7 @@
 package net.dxzzz.friends.Commands;
 
+import net.dxzzz.friends.Database.DatabaseManager;
+import net.dxzzz.friends.Friends;
 import net.dxzzz.friends.MessageManagement;
 import net.dxzzz.friends.PlayerData;
 import net.dxzzz.friends.Listener.PluginMessage;
@@ -53,7 +55,8 @@ public class CommandExc_fm implements CommandExecutor {
                     return;
                 }
                 List<String> friends = playerData.getFriends();
-                if(!friends.contains(args[0])){
+                String args0 = Friends.getDatabaseManager().getUserRealName(args[0]);
+                if(!friends.contains(args0)){
                     new BukkitRunnable() {
                         @Override
                         public void run() {
@@ -63,7 +66,7 @@ public class CommandExc_fm implements CommandExecutor {
                     return;
                 }
                 List<String> onLinePlayers = PluginMessage.getOnlinePlayers();
-                if(!onLinePlayers.contains(args[0])){
+                if(!onLinePlayers.contains(args0)){
                     new BukkitRunnable() {
                         @Override
                         public void run() {
@@ -73,7 +76,7 @@ public class CommandExc_fm implements CommandExecutor {
                     return;
                 }
                 String content = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
-                PlayerData targetData = new PlayerData(args[0]);
+                PlayerData targetData = new PlayerData(args0);
                 if(!targetData.canReceivePrivateMessageStatus()){
                     new BukkitRunnable() {
                         @Override
@@ -89,7 +92,7 @@ public class CommandExc_fm implements CommandExecutor {
                     @Override
                     public void run() {
                         MessageManagement.privateMessageSucceed(player, content);
-                        MessageManagement.bc_sendMsgToFriend(player, args[0], content, plugin);
+                        MessageManagement.bc_sendMsgToFriend(player, args0, content, plugin);
                     }
                 }.runTask(plugin);
             }

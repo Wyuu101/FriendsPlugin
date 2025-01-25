@@ -14,10 +14,14 @@ import java.util.List;
 
 public class DatabaseManager {
     private final Database mainDb;
+    private final Database userDb;
     public DatabaseManager(String username, String password, String host, int port){
         String address = host+":"+port;
         DatabaseOptions mainDb_options= DatabaseOptions.builder().mysql(username, password, "Friends", address).build();
+        DatabaseOptions userDb_options= DatabaseOptions.builder().mysql(username, password, "authme", address).build();
         mainDb = PooledDatabaseOptions.builder().options(mainDb_options).createHikariDatabase();
+        userDb = PooledDatabaseOptions.builder().options(userDb_options).createHikariDatabase();
+
 
     }
 
@@ -284,6 +288,24 @@ public class DatabaseManager {
         if(mainDb!=null){
             mainDb.close();
         }
+        if(userDb!= null){
+            userDb.close();
+        }
         DB.close();
+    }
+
+
+
+    public String getUserRealName(String username){
+        String realname = username;
+        try{
+            realname = userDb.getFirstColumn("SELECT realname FROM authme WHERE username = ?",username);
+            if(realname==null){
+                realname= username;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return realname;
     }
 }

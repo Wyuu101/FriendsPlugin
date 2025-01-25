@@ -38,11 +38,13 @@ public class CommandExc_hy implements CommandExecutor {
                 return false;
             }
             //TODO: 实现添加好友功能
+
             new BukkitRunnable() {
                 @Override
                 public void run() {
+                    String args1 = Friends.getDatabaseManager().getUserRealName(args[1]);
                     PlayerData playerData = new PlayerData(player.getName());
-                    PlayerData targetData = new PlayerData(args[1]);
+                    PlayerData targetData = new PlayerData(args1);
                     if(!playerData.isAvailable()){
                         new BukkitRunnable() {
                             @Override
@@ -53,7 +55,7 @@ public class CommandExc_hy implements CommandExecutor {
                         return;
                     }
                     List<String> playerFriends = playerData.getFriends();
-                    if(playerFriends.contains(args[1])){
+                    if(playerFriends.contains(args1)){
                         new BukkitRunnable() {
                             @Override
                             public void run() {
@@ -71,7 +73,7 @@ public class CommandExc_hy implements CommandExecutor {
                         }.runTask(plugin);
                         return;
                     }
-                    if(args[1].equalsIgnoreCase(player.getName())){
+                    if(args1.equalsIgnoreCase(player.getName())){
                         new BukkitRunnable() {
                             @Override
                             public void run() {
@@ -108,7 +110,7 @@ public class CommandExc_hy implements CommandExecutor {
                         return;
                     }
                     long currentTime = System.currentTimeMillis();
-                    long inviteTime = playerData.getInviteHistoryTime(args[1]);
+                    long inviteTime = playerData.getInviteHistoryTime(args1);
                     long timeDifference = (currentTime - inviteTime)/1000;
                     if(timeDifference<60){
                         new BukkitRunnable() {
@@ -119,12 +121,12 @@ public class CommandExc_hy implements CommandExecutor {
                         }.runTask(plugin);
                         return;
                     }
-                    Friends.getDatabaseManager().addOrSetInviteHistory(player.getName(), args[1], currentTime);
+                    Friends.getDatabaseManager().addOrSetInviteHistory(player.getName(), args1, currentTime);
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            MessageManagement.sendFriendRequest(player, args[1]);
-                            MessageManagement.bc_sendFriendRequest(player,args[1],plugin);
+                            MessageManagement.sendFriendRequest(player, args1);
+                            MessageManagement.bc_sendFriendRequest(player,args1,plugin);
                         }
                     }.runTask(plugin);
                 }
@@ -139,8 +141,9 @@ public class CommandExc_hy implements CommandExecutor {
             new BukkitRunnable() {
                 @Override
                 public void run() {
+                    String args1 = Friends.getDatabaseManager().getUserRealName(args[1]);
                     PlayerData playerData = new PlayerData(player.getName());
-                    PlayerData targetData = new PlayerData(args[1]);
+                    PlayerData targetData = new PlayerData(args1);
                     if(!playerData.isAvailable()){
                         new BukkitRunnable() {
                             public void run() {
@@ -151,7 +154,7 @@ public class CommandExc_hy implements CommandExecutor {
                     }
                     List<String> playerFriends = playerData.getFriends();
                     List<String> targetFriends = targetData.getFriends();
-                    if(!(playerFriends.contains(args[1]))){
+                    if(!(playerFriends.contains(args1))){
                         new BukkitRunnable() {
                             @Override
                             public void run() {
@@ -160,7 +163,7 @@ public class CommandExc_hy implements CommandExecutor {
                         }.runTask(plugin);
                         return;
                     }
-                    playerFriends.remove(args[1]);
+                    playerFriends.remove(args1);
                     targetFriends.remove(player.getName());
                     playerData.setFriends(playerFriends);
                     targetData.setFriends(targetFriends);
@@ -169,7 +172,7 @@ public class CommandExc_hy implements CommandExecutor {
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            MessageManagement.hasDeletedFriend(player, args[1]);
+                            MessageManagement.hasDeletedFriend(player, args1);
                         }
                     }.runTask(plugin);
                 }
@@ -193,7 +196,8 @@ public class CommandExc_hy implements CommandExecutor {
                         }.runTask(plugin);
                         return;
                     }
-                    if(playerData.getFriends().contains(args[1])){
+                    String args1 = Friends.getDatabaseManager().getUserRealName(args[1]);
+                    if(playerData.getFriends().contains(args1)){
                         new BukkitRunnable() {
                             public void run() {
                                 MessageManagement.alreadyFriends(player);
@@ -202,7 +206,7 @@ public class CommandExc_hy implements CommandExecutor {
                         return;
                     }
                     long currentTime = System.currentTimeMillis();
-                    PlayerData targetData = new PlayerData(args[1]);
+                    PlayerData targetData = new PlayerData(args1);
                     long inviteTime = targetData.getInviteHistoryTime(player.getName());
                     long timeDifference = (currentTime - inviteTime)/1000;
                     if(timeDifference>=60){
@@ -241,7 +245,7 @@ public class CommandExc_hy implements CommandExecutor {
                     }
                     List<String> friends = playerData.getFriends();
                     List<String> targetFriends = targetData.getFriends();
-                    friends.add(args[1]);
+                    friends.add(args1);
                     targetFriends.add(player.getName());
                     playerData.setFriends(friends);
                     targetData.setFriends(targetFriends);
@@ -250,8 +254,8 @@ public class CommandExc_hy implements CommandExecutor {
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            MessageManagement.becomeFriends(player, Bukkit.getOfflinePlayer(args[1]));
-                            MessageManagement.bc_becomeFriends(args[1], player,plugin);
+                            MessageManagement.becomeFriends(player, Bukkit.getOfflinePlayer(args1));
+                            MessageManagement.bc_becomeFriends(args1, player,plugin);
                         }
                     }.runTask(plugin);
                 }

@@ -1,5 +1,6 @@
 package net.dxzzz.friends.Commands;
 
+import net.dxzzz.friends.Friends;
 import net.dxzzz.friends.GUI.FriendsGuiManager;
 import net.dxzzz.friends.MessageManagement;
 import net.dxzzz.friends.PlayerData;
@@ -29,7 +30,8 @@ public class CommandExc_hyop implements CommandExecutor {
                 new BukkitRunnable(){
                     @Override
                     public void run() {
-                        PlayerData targetData = new PlayerData(args[1]);
+                        String args1 = Friends.getDatabaseManager().getUserRealName(args[1]);
+                        PlayerData targetData = new PlayerData(args1);
                         if(!targetData.isAvailable()){
                             new BukkitRunnable() {
                                 @Override
