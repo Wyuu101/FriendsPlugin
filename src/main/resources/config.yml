@@ -1,0 +1,16 @@
+#TeamPlugin by X_32xm
+#for only Dxzzz.net
+#QQ:2644489337
+
+#！！！注意：1、本插件需要手动创建一个Friends数据库,插件会自动连接到数据库并创建表！！！
+
+#数据库设置(仅支持MySQL)
+DataBase:
+  MySQL:
+    Host: localhost
+    Username: root
+    Password:
+    Port: 3306
+
+#当前插件是否在Lobby中运行
+AsLobby: true
