@@ -33,7 +33,7 @@ public class PlayerData{
             return;
         }
         this.num = Integer.parseInt(basicInfo.get(0));
-        this.isVip = Boolean.parseBoolean(basicInfo.get(1));
+        this.isVip = (basicInfo.get(1).equals("1"));
         this.friends = databaseManager.getAllFriends(username);
         this.isAvailable = true;
         this.lastChatWith = basicInfo.get(2);

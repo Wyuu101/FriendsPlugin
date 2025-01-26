@@ -123,6 +123,24 @@ public class FriendsGuiManager {
         gui4.setItem(36,switchGlobalChatButton);
         gui5.setItem(36,switchGlobalChatButton);
 
+        //好友VIP购买按钮
+        List<String> vipButtonLore = new ArrayList<>();
+        vipButtonLore.add("§7购买后可将好友位提升至 100位 ！！！");
+        vipButtonLore.add("§7妥妥的交际花，恐怖如斯喵！");
+        vipButtonLore.add("");
+        vipButtonLore.add("§f当前状态: "+(playerData.isVip() ? "§a已拥有" : "§c未拥有"));
+        vipButtonLore.add("");
+        vipButtonLore.add("§a永久§f/§6150 点券");
+        vipButtonLore.add("");
+        vipButtonLore.add("§e点击购买");
+        ItemStack vipButton = new CustomItemHead("9600", "§d解锁更多好友位", vipButtonLore);
+        gui1.setItem(45, vipButton);
+        gui2.setItem(45, vipButton);
+        gui3.setItem(45, vipButton);
+        gui4.setItem(45, vipButton);
+        gui5.setItem(45, vipButton);
+
+
         //加载好友头颅
         loadPlayerHead(1,gui1);
         loadPlayerHead(2,gui2);

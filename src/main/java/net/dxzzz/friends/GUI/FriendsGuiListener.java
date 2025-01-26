@@ -201,6 +201,10 @@ public class FriendsGuiListener implements Listener {
                         }
                     }.runTaskAsynchronously(plugin);
                     break;
+                case 45:
+                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "dgui openfor "+player.getName()+" tradeconfirm-friends-vip.yml");
+                    player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 1);
+                    break;
                 case 48:
                     FriendsGuiManager friendsGuiManager = new FriendsGuiManager(player);
                     if(event.getInventory().getName().contains("§6Dxz§ezz.§bNet §c>> §4好友 §7(第2页)")){
