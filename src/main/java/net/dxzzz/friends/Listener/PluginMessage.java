@@ -23,11 +23,13 @@ public class PluginMessage implements PluginMessageListener {
     @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] message) {
         if (channel.equals("BungeeCord")) {
+//            plugin.getLogger().info("Received plugin message from BungeeCord");
             ByteArrayDataInput in = ByteStreams.newDataInput(message);
             String subChannel = in.readUTF();
             if (subChannel.equals("OnlinePlayers")) {
                 String onlinePlayersString = in.readUTF();
                 onlinePlayers = UniversalModule.stringToList(onlinePlayersString);
+//                plugin.getLogger().info(onlinePlayers.toString());
                 return;
             }
         }

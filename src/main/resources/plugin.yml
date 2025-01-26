@@ -6,7 +6,7 @@ depend: [PlaceholderAPI,HeadDatabase]
 commands:
   hy:
     description: "组队系统"
-    permission: Team.Normal
+    permission: Friends.Normal
     usage: "§3§l⚎⚎⚎⚎⚎⚎⚎⚎ §6Dxzzz.Net §f- §9组队喇叭 §3§l⚎⚎⚎⚎⚎⚎⚎⚎\n
             §3 > §e/hy js <玩家>  §3§l➽  §a接受好友邀请\n
             §3 > §e/hy lb <页数>  §3§l➽  §a好友列表\n
@@ -19,20 +19,20 @@ commands:
 
   fg:
     description: "好友-全局聊天"
-    permission: Team.Normal
+    permission: Friends.Normal
     usage: "§3§l⚎⚎⚎⚎⚎⚎⚎⚎⚎ §6Dxzzz.Net §f- §9好友全局聊天 §3§l⚎⚎⚎⚎⚎⚎⚎⚎\n
             §3 > §e/fg <内容>  §3§l➽  §a发送全局聊天\n
             §3§l⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎"
 
   fr:
     description: "好友-快速回复"
-    permission: Team.Normal
+    permission: Friends.Normal
     usage: "§3§l⚎⚎⚎⚎⚎⚎⚎⚎⚎ §6Dxzzz.Net §f- §9好友快速回复 §3§l⚎⚎⚎⚎⚎⚎⚎⚎\n
             §3 > §e/fr <内容>  §3§l➽  §a快速回复\n
             §3§l⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎"
   fm:
     description: "好友-私聊消息"
-    permission: Team.Normal
+    permission: Friends.Normal
     usage: "§3§l⚎⚎⚎⚎⚎⚎⚎⚎⚎ §6Dxzzz.Net §f- §9好友私聊消息 §3§l⚎⚎⚎⚎⚎⚎⚎⚎\n
             §3 > §e/fm <玩家> <内容>  §3§l➽  §a好友私聊\n
             §3§l⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎"
@@ -40,13 +40,13 @@ commands:
 
   hyop:
     description: "好友系统管理"
-    permission: Team.Admin
+    permission: Friends.Admin
     usage: "§3§l⚎⚎⚎⚎⚎⚎⚎⚎⚎ §6Dxzzz.Net §f- §9好友系统管理 §3§l⚎⚎⚎⚎⚎⚎⚎⚎\n
             §3 > §e/hyop vip <玩家>  §3§l➽  §a给某人开通好友位扩展权限\n
             §3§l⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎"
 
 permissions:
-  Team.Normal:
+  Friends.Normal:
     default: true
-  Team.Admin:
+  Friends.Admin:
     default: op
