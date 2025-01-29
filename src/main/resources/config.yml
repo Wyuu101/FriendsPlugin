@@ -13,5 +13,12 @@ DataBase:
     Password:
     Port: 3306
 
+#redis设置
+Redis:
+  host: localhost
+  port: 6379
+  password: ""
+  database: 0
+
 #当前插件是否在Lobby中运行
 AsLobby: true

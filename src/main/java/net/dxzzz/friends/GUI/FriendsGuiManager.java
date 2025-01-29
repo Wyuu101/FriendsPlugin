@@ -1,7 +1,7 @@
 package net.dxzzz.friends.GUI;
 
+import net.dxzzz.friends.Friends;
 import net.dxzzz.friends.PlayerData;
-import net.dxzzz.friends.Listener.PluginMessage;
 import net.dxzzz.friends.Utils.CustomItemHead;
 import net.dxzzz.friends.Utils.CustomItemStack;
 import org.bukkit.Bukkit;
@@ -31,7 +31,7 @@ public class FriendsGuiManager {
         this.player = player;
         this.playerData = new PlayerData(player.getName());
         this.friends = playerData.getFriends();
-        onLinePlayers  = PluginMessage.getOnlinePlayers();
+        onLinePlayers =new ArrayList<>(Friends.redisPlayerAPI.getOnlinePlayers().keySet());
         this.upperLimit = playerData.isVip() ? 20 : 100;
         this.onlineFriends = new ArrayList<>();
         for(String friend :friends){

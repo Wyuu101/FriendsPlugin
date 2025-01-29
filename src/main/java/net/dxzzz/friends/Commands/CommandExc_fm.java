@@ -1,10 +1,8 @@
 package net.dxzzz.friends.Commands;
 
-import net.dxzzz.friends.Database.DatabaseManager;
 import net.dxzzz.friends.Friends;
 import net.dxzzz.friends.MessageManagement;
 import net.dxzzz.friends.PlayerData;
-import net.dxzzz.friends.Listener.PluginMessage;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -65,7 +64,7 @@ public class CommandExc_fm implements CommandExecutor {
                     }.runTask(plugin);
                     return;
                 }
-                List<String> onLinePlayers = PluginMessage.getOnlinePlayers();
+                List<String> onLinePlayers =new ArrayList<>(Friends.redisPlayerAPI.getOnlinePlayers().keySet());
                 if(!onLinePlayers.contains(args0)){
                     new BukkitRunnable() {
                         @Override

@@ -1,8 +1,8 @@
 package net.dxzzz.friends.Commands;
 
+import net.dxzzz.friends.Friends;
 import net.dxzzz.friends.MessageManagement;
 import net.dxzzz.friends.PlayerData;
-import net.dxzzz.friends.Listener.PluginMessage;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommandExc_fr implements CommandExecutor {
@@ -61,7 +62,8 @@ public class CommandExc_fr implements CommandExecutor {
                     }.runTask(plugin);
                     return;
                 }
-                if(!PluginMessage.getOnlinePlayers().contains(playerData.getLastChatWith())){
+                List<String> onLinePlayers =new ArrayList<>(Friends.redisPlayerAPI.getOnlinePlayers().keySet());
+                if(!onLinePlayers.contains(playerData.getLastChatWith())){
                     new BukkitRunnable() {
                         @Override
                         public void run() {

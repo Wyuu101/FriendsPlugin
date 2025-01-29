@@ -1,7 +1,6 @@
 package net.dxzzz.friends;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import net.dxzzz.friends.Listener.PluginMessage;
 import net.md_5.bungee.api.chat.*;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -14,6 +13,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MessageManagement {
@@ -233,7 +233,7 @@ public class MessageManagement {
 
     public static void friendList(Player player,PlayerData playerData,int page) {
         TextComponent message = new TextComponent("§e好友列表:\n");
-        List<String> onLinePlayerList = PluginMessage.getOnlinePlayers();
+        List<String> onLinePlayerList =new ArrayList<>(Friends.redisPlayerAPI.getOnlinePlayers().keySet());
         int totalPage = (int) Math.ceil(playerData.getFriends().size() / 10.0);
         totalPage = totalPage == 0 ? 1 : totalPage;
         int upperLimit = playerData.isVip() ? 100 : 20;
