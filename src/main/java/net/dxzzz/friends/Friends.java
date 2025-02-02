@@ -42,6 +42,7 @@ public final class Friends extends JavaPlugin {
         this.reloadConfig();
         this.loadConfig();
 
+
         if(!loadConfigSuccess){
             getServer().getPluginManager().disablePlugin(this);
             return;
@@ -58,7 +59,7 @@ public final class Friends extends JavaPlugin {
 
         redisManager = new RedisManager(redisHost, redisPort, redisPassword, redisDatabase);
         redisPlayerAPI = redisManager.getRedisApi();
-
+        instance = this;
         Bukkit.getPluginCommand("hy").setExecutor(new CommandExc_hy(this));
         Bukkit.getPluginCommand("fg").setExecutor(new CommandExc_fg(this));
         Bukkit.getPluginCommand("fm").setExecutor(new CommandExc_fm(this));
@@ -74,7 +75,7 @@ public final class Friends extends JavaPlugin {
 
 
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-        instance = this;
+
         logger.info("==========[Friends好友系统已加载完毕]=========");
 
     }
