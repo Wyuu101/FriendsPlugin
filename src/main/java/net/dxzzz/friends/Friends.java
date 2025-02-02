@@ -95,10 +95,10 @@ public final class Friends extends JavaPlugin {
         host = this.getConfig().getString("DataBase.MySQL.Host", "localhost");
         port = this.getConfig().getInt("DataBase.MySQL.Port", 3306);
         asLobby = this.getConfig().getBoolean("AsLobby", true);
-        redisDatabase = this.getConfig().getInt("Redis.Database", 0);
-        redisHost = this.getConfig().getString("Redis.Host", "localhost");
-        redisPort = this.getConfig().getInt("Redis.Port", 6379);
-        redisPassword = this.getConfig().getString("Redis.Password");
+        redisDatabase = this.getConfig().getInt("Redis.database", 0);
+        redisHost = this.getConfig().getString("Redis.host", "localhost");
+        redisPort = this.getConfig().getInt("Redis.port", 6379);
+        redisPassword = this.getConfig().getString("Redis.password");
         loadConfigSuccess=true;
     }
 
