@@ -60,7 +60,7 @@ AsLobby: true
 提供API用于获取玩家数据
 
 maven设置
-```
+```xml
       <dependency>
           <groupId>net.dxzzz</groupId>
           <artifactId>Friends</artifactId>
