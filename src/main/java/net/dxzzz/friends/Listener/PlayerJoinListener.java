@@ -12,10 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerJoinListener implements Listener {
-    private static final DatabaseManager databaseManager = Friends.getDatabaseManager();
+    private final Friends plugin = Friends.getInstance();
+    private final DatabaseManager databaseManager = plugin.getDatabaseManager();
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if (Friends.isAsLobby()) {
+        if (plugin.asLobby) {
             Player player = event.getPlayer();
             List<String> friends = new ArrayList<>();
             databaseManager.createPlayerData(player.getName(), UniversalModule.listToString(friends), 0, 0);

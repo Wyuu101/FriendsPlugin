@@ -15,8 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CommandExc_fm implements CommandExecutor {
-    private final JavaPlugin plugin;
-    public CommandExc_fm(JavaPlugin plugin) {
+    private final Friends plugin;
+    public CommandExc_fm(Friends plugin) {
         this.plugin = plugin;
     }
 
@@ -54,7 +54,7 @@ public class CommandExc_fm implements CommandExecutor {
                     return;
                 }
                 List<String> friends = playerData.getFriends();
-                String args0 = Friends.getDatabaseManager().getUserRealName(args[0]);
+                String args0 = plugin.getDatabaseManager().getUserRealName(args[0]);
                 if(!friends.contains(args0)){
                     new BukkitRunnable() {
                         @Override
@@ -64,7 +64,7 @@ public class CommandExc_fm implements CommandExecutor {
                     }.runTask(plugin);
                     return;
                 }
-                List<String> onLinePlayers =new ArrayList<>(Friends.redisPlayerAPI.getOnlinePlayers().keySet());
+                List<String> onLinePlayers =new ArrayList<>(plugin.getRedisApi().getOnlinePlayers().keySet());
                 if(!onLinePlayers.contains(args0)){
                     new BukkitRunnable() {
                         @Override

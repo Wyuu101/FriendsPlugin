@@ -15,8 +15,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.List;
 
 public class CommandExc_hy implements CommandExecutor {
-    private final JavaPlugin plugin;
-    public CommandExc_hy(JavaPlugin plugin) {
+    private final Friends plugin;
+    public CommandExc_hy(Friends plugin) {
         this.plugin = plugin;
     }
     @Override
@@ -42,7 +42,7 @@ public class CommandExc_hy implements CommandExecutor {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    String args1 = Friends.getDatabaseManager().getUserRealName(args[1]);
+                    String args1 = plugin.getDatabaseManager().getUserRealName(args[1]);
                     PlayerData playerData = new PlayerData(player.getName());
                     PlayerData targetData = new PlayerData(args1);
                     if(!playerData.isAvailable()){
@@ -121,7 +121,7 @@ public class CommandExc_hy implements CommandExecutor {
                         }.runTask(plugin);
                         return;
                     }
-                    Friends.getDatabaseManager().addOrSetInviteHistory(player.getName(), args1, currentTime);
+                    plugin.getDatabaseManager().addOrSetInviteHistory(player.getName(), args1, currentTime);
                     new BukkitRunnable() {
                         @Override
                         public void run() {
@@ -141,7 +141,7 @@ public class CommandExc_hy implements CommandExecutor {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    String args1 = Friends.getDatabaseManager().getUserRealName(args[1]);
+                    String args1 = plugin.getDatabaseManager().getUserRealName(args[1]);
                     PlayerData playerData = new PlayerData(player.getName());
                     PlayerData targetData = new PlayerData(args1);
                     if(!playerData.isAvailable()){
@@ -196,7 +196,7 @@ public class CommandExc_hy implements CommandExecutor {
                         }.runTask(plugin);
                         return;
                     }
-                    String args1 = Friends.getDatabaseManager().getUserRealName(args[1]);
+                    String args1 = plugin.getDatabaseManager().getUserRealName(args[1]);
                     if(playerData.getFriends().contains(args1)){
                         new BukkitRunnable() {
                             public void run() {

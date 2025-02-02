@@ -17,7 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MessageManagement {
-    private static final JavaPlugin plugin = JavaPlugin.getPlugin(Friends.class);
+
+    private static final Friends plugin = Friends.getInstance();
     //好友位已满
     public static void noFriendPosition(Player player) {
         player.sendMessage("§3好友 >> §c你的好友位已满，前往好友菜单可购买更多位置。");
@@ -233,7 +234,7 @@ public class MessageManagement {
 
     public static void friendList(Player player,PlayerData playerData,int page) {
         TextComponent message = new TextComponent("§e好友列表:\n");
-        List<String> onLinePlayerList =new ArrayList<>(Friends.redisPlayerAPI.getOnlinePlayers().keySet());
+        List<String> onLinePlayerList =new ArrayList<>(plugin.getRedisApi().getOnlinePlayers().keySet());
         int totalPage = (int) Math.ceil(playerData.getFriends().size() / 10.0);
         totalPage = totalPage == 0 ? 1 : totalPage;
         int upperLimit = playerData.isVip() ? 100 : 20;

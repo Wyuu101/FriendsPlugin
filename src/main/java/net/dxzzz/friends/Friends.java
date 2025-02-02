@@ -15,23 +15,22 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Logger;
 
 public final class Friends extends JavaPlugin {
+    private static Friends instance;
     public static PlaceholderAPIPlugin placeholderAPI;
-    private static DatabaseManager databaseManager;
-    private static PlayerJoinListener playerJoinListener;
-    private static FriendsGuiListener friendsGuiListener;
+    public DatabaseManager databaseManager;
     public final Logger logger= getLogger();
-    private static String username;
-    private static String password;
-    private static int port;
-    private static String host;
-    public static boolean asLobby;
-    private static boolean loadConfigSuccess ;
-    private static String redisHost;
-    private static int redisPort;
-    private static String redisPassword;
-    private static int redisDatabase;
-    private static RedisManager redisManager;
-    public static RedisPlayerAPI redisPlayerAPI;
+    private String username;
+    private String password;
+    private int port;
+    private String host;
+    public boolean asLobby;
+    private boolean loadConfigSuccess ;
+    private String redisHost;
+    private int redisPort;
+    private String redisPassword;
+    private int redisDatabase;
+    private RedisManager redisManager;
+    private RedisPlayerAPI redisPlayerAPI;
     @Override
     public void onEnable() {
         // Plugin startup logic
@@ -68,14 +67,14 @@ public final class Friends extends JavaPlugin {
         getCommand("hy").setTabCompleter(new TabCompliter_hy());
         getCommand("fm").setTabCompleter(new TabCompliter_fm());
 
-        playerJoinListener = new PlayerJoinListener();
-        friendsGuiListener = new FriendsGuiListener(this);
+        PlayerJoinListener playerJoinListener = new PlayerJoinListener();
+        FriendsGuiListener friendsGuiListener = new FriendsGuiListener(this);
         Bukkit.getPluginManager().registerEvents(playerJoinListener, this);
         Bukkit.getPluginManager().registerEvents(friendsGuiListener, this);
 
 
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-
+        instance = this;
         logger.info("==========[Friends好友系统已加载完毕]=========");
 
     }
@@ -89,7 +88,7 @@ public final class Friends extends JavaPlugin {
 
     }
 
-    public void loadConfig() {
+    private void loadConfig() {
         username = this.getConfig().getString("DataBase.MySQL.Username", "root");
         password = this.getConfig().getString("DataBase.MySQL.Password");
         host = this.getConfig().getString("DataBase.MySQL.Host", "localhost");
@@ -111,11 +110,13 @@ public final class Friends extends JavaPlugin {
         return placeholderAPI != null;
     }
 
-    public static DatabaseManager getDatabaseManager() {
+    public DatabaseManager getDatabaseManager() {
         return databaseManager;
     }
-    public static boolean isAsLobby() {
-        return asLobby;
+    public RedisPlayerAPI getRedisApi() {
+        return redisPlayerAPI;
     }
-
+    public static Friends getInstance(){
+        return instance;
+    }
 }

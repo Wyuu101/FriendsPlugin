@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandExc_fr implements CommandExecutor {
-    private final JavaPlugin plugin;
-    public CommandExc_fr(JavaPlugin plugin) {
+    private final Friends plugin;
+    public CommandExc_fr(Friends plugin) {
         this.plugin = plugin;
     }
 
@@ -62,7 +62,7 @@ public class CommandExc_fr implements CommandExecutor {
                     }.runTask(plugin);
                     return;
                 }
-                List<String> onLinePlayers =new ArrayList<>(Friends.redisPlayerAPI.getOnlinePlayers().keySet());
+                List<String> onLinePlayers =new ArrayList<>(plugin.getRedisApi().getOnlinePlayers().keySet());
                 if(!onLinePlayers.contains(playerData.getLastChatWith())){
                     new BukkitRunnable() {
                         @Override

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FriendsGuiManager {
+    private final Friends plugin = Friends.getInstance();
     private Inventory gui1 = null;
     private Inventory gui2 = null;
     private Inventory gui3 = null;
@@ -31,7 +32,7 @@ public class FriendsGuiManager {
         this.player = player;
         this.playerData = new PlayerData(player.getName());
         this.friends = playerData.getFriends();
-        onLinePlayers =new ArrayList<>(Friends.redisPlayerAPI.getOnlinePlayers().keySet());
+        onLinePlayers =new ArrayList<>(plugin.getRedisApi().getOnlinePlayers().keySet());
         this.upperLimit = playerData.isVip() ? 20 : 100;
         this.onlineFriends = new ArrayList<>();
         for(String friend :friends){

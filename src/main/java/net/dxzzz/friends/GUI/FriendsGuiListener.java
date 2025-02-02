@@ -17,8 +17,8 @@ import xyz.upperlevel.spigot.book.BookUtil;
 import java.util.Collections;
 
 public class FriendsGuiListener implements Listener {
-    private final JavaPlugin plugin;
-    public FriendsGuiListener(JavaPlugin plugin) {
+    private final Friends plugin;
+    public FriendsGuiListener(Friends plugin) {
         this.plugin = plugin;
     }
     @EventHandler
@@ -87,7 +87,7 @@ public class FriendsGuiListener implements Listener {
                         SignGUI gui = SignGUI.builder()
                                 .setLines(null, "请在第一行输入", "要添加的玩家名")
                                 .setHandler((p, result) -> {
-                                    String name = Friends.getDatabaseManager().getUserRealName(result.getLine(0));
+                                    String name = plugin.getDatabaseManager().getUserRealName(result.getLine(0));
                                     Bukkit.getScheduler().runTask(plugin, () -> {
                                         player.performCommand("hy tj " + name);
                                         player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 1);

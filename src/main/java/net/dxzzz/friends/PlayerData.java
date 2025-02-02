@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerData{
-    private final DatabaseManager databaseManager = Friends.getDatabaseManager();
+    private final DatabaseManager databaseManager = Friends.getInstance().getDatabaseManager();
     private String username;
     private boolean isAvailable;
     private int num = 0;

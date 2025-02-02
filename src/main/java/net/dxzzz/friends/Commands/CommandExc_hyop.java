@@ -10,12 +10,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class CommandExc_hyop implements CommandExecutor {
-    private final JavaPlugin plugin;
-    public CommandExc_hyop(JavaPlugin plugin) {
+    private final Friends plugin;
+    public CommandExc_hyop(Friends plugin) {
         this.plugin = plugin;
     }
 
@@ -30,7 +29,7 @@ public class CommandExc_hyop implements CommandExecutor {
                 new BukkitRunnable(){
                     @Override
                     public void run() {
-                        String args1 = Friends.getDatabaseManager().getUserRealName(args[1]);
+                        String args1 = plugin.getDatabaseManager().getUserRealName(args[1]);
                         PlayerData targetData = new PlayerData(args1);
                         if(!targetData.isAvailable()){
                             new BukkitRunnable() {
