@@ -130,8 +130,8 @@ public class MessageManagement {
     }
 
     //成功发送私聊消息
-    public static void privateMessageSucceed(Player player,String content){
-        player.sendMessage("§6[§a姬友§6] §b我 §f-> §7"+PlaceholderAPI.setPlaceholders(player, "%tag_all%")+" §a> §f"+content);
+    public static void privateMessageSucceed(Player player,String target,String content){
+        player.sendMessage("§6[§a姬友§6] §b我 §f-> §7"+PlaceholderAPI.setPlaceholders(Bukkit.getOfflinePlayer(target), "%tag_all%")+" §a> §f"+content);
     }
 
     /*

@@ -86,7 +86,7 @@ public class CommandExc_fr implements CommandExecutor {
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        MessageManagement.privateMessageSucceed(player, content);
+                        MessageManagement.privateMessageSucceed(player,playerData.getLastChatWith(), content);
                         MessageManagement.bc_sendMsgToFriend(player, playerData.getLastChatWith(), content, plugin);
                     }
                 }.runTask(plugin);

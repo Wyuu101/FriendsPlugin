@@ -90,7 +90,7 @@ public class CommandExc_fm implements CommandExecutor {
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        MessageManagement.privateMessageSucceed(player, content);
+                        MessageManagement.privateMessageSucceed(player, args0,content);
                         MessageManagement.bc_sendMsgToFriend(player, args0, content, plugin);
                     }
                 }.runTask(plugin);
